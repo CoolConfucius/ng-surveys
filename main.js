@@ -64,11 +64,6 @@ app.controller('homeCtrl', function($scope, $state, $localStorage){
     }
   };  
 
-  $scope.goSurvey = function(id){
-    console.log(id);
-
-  };
-
 
 });
 
