@@ -1,0 +1,56 @@
+<h2 ng-show="editState">Edit Survey</h2>
+<form ng-show="editState" class="form-inline">
+
+  <label for="newTitle">Title</label>
+  <input type="text" ng-model='newSurvey.title'>
+
+  <label for="newCategory">Author</label>
+  <input type="text" ng-model='newSurvey.author'>
+
+  <label for="newMinutes">Date</label>
+  <input type="number" ng-model='newSurvey.minutes' min="0">
+  <button ng-click='addSurvey()' class="btn btn-success btn-sm" ng-hide="editState">Add Survey</button>
+  <button ng-click='editSurvey()' class="btn btn-info btn-sm" ng-show="editState">Edit Survey</button>
+
+</form>
+
+
+<div class="form-group">
+  <label for="filter">Search</label>
+  <input ng-model="filterText" type="text" class="form-control">
+</div>
+
+<table class="table" ng-if='surveys.length'>
+  <thead>
+    <tr>
+      <th ng-click="sort = ''">#</th>
+      <th ng-repeat="(key, value) in surveys[0]" ng-if="key!='questions'&&key!='answers'">{{key}}
+        <span ng-click="sortSurvey(key)" class="glyphicon glyphicon-triangle-bottom"></span>
+      </th>
+      <th>Delete</th>
+      <th>Edit</th>
+      <th>Answer</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr ng-repeat="(key, survey) in surveys | filter : filterText | orderBy: sortText track by $index" ng-class='{lightsteelblue: $even}'>
+      <td>{{$index + 1}}</td>
+      <td ng-repeat="(key, value) in survey" ng-if="key!='questions'&&key!='answers'">
+        <!-- {{value}} -->
+        <span ng-if="key!='title'">{{value}}</span>
+        <a ng-if="key=='title'" href="#/survey/{{survey.id}}">{{value}}</a>
+      </td>
+
+      <td><button ng-click="removeSurvey(survey)" class="btn btn-danger btn-sm">
+        <span class="glyphicon glyphicon-trash"></span>              
+      </button></td>
+      <td><button ng-click="openEdit(survey)" class="btn btn-warning btn-sm">
+        <span class="glyphicon glyphicon-pencil"></span>              
+      </button></td>
+      <td><button ng-click="openEdit(survey)" class="btn btn-success btn-sm">
+        <span class="glyphicon glyphicon-pencil"></span>              
+      </button></td>
+    </tr>
+  </tbody>
+</table>
