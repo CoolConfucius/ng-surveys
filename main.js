@@ -68,6 +68,10 @@ app.controller('homeCtrl', function($scope, $state, $localStorage){
 });
 
 app.controller('addCtrl', function($scope, $state, $localStorage){
+  $scope.addQuestion = function(question){
+    $scope.newSurvey.questions.push(question);
+  };
+
   $scope.addSurvey = function(){
     var newid = 0; 
     for (let id of $localStorage.surveys) {
