@@ -68,8 +68,9 @@ app.controller('homeCtrl', function($scope, $state, $localStorage){
 });
 
 app.controller('addCtrl', function($scope, $state, $localStorage){
-  $scope.addQuestion = function(question){
-    $scope.newSurvey.questions.push(question);
+  $scope.currentquestion = ""; 
+  $scope.addQuestion = function(){
+    $scope.newSurvey.questions.push($scope.currentquestion);
   };
 
   $scope.addSurvey = function(){
