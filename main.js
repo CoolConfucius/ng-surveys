@@ -72,7 +72,14 @@ app.controller('addCtrl', function($scope, $state, $localStorage){
   $scope.newSurvey = defaultSurvey;
   $scope.currentquestion = ""; 
   $scope.addQuestion = function(){
-    $scope.newSurvey.questions.push($scope.currentquestion);
+    var qid = 0; 
+    for (let id of $scope.newSurvey.questions) {
+      if (qid === id) qid++;
+    }
+    $scope.newSurvey.questions.push({
+      id: qid,
+      question: $scope.currentquestion
+    });
   };
 
   $scope.addSurvey = function(){
