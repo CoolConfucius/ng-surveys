@@ -8,7 +8,21 @@
 
   <label for="newDate">Date</label>
   <input type="number" ng-model='newSurvey.date' min="0">
+  <br>
+
+  
+  <label for="currentquestion">Question</label>
+  <input type="text" ng-model='currentquestion'>
+  
+  <button ng-click='addQuestion()' class="btn btn-success btn-sm">Add Question</button>  
+
+  <div ng-repeat="question in newSurvey.questions track by $index" ng-class='{lightsteelblue: $even}'>
+    {{question}}
+  </div>
+
+  <br>
+
   <button ng-click='addSurvey()' class="btn btn-success btn-sm" ng-hide="editState">Add Survey</button>
-  <button ng-click='editSurvey()' class="btn btn-info btn-sm" ng-show="editState">Edit Survey</button>
+  <!-- <button ng-click='editSurvey()' class="btn btn-info btn-sm" ng-show="editState">Edit Survey</button> -->
 
 </form>

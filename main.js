@@ -11,7 +11,7 @@ app.config(function($stateProvider, $urlRouterProvider, $localStorageProvider){
   $urlRouterProvider.otherwise('/');
 });
 
-var resetSurvey = {
+var defaultSurvey = {
   title: "title",
   author: "author", 
   date: 0, 
@@ -45,13 +45,13 @@ app.controller('homeCtrl', function($scope, $state, $localStorage){
     if ($scope.editState) {
       $scope.newSurvey = $scope.surveys[$scope.editIndex]; 
     } else {
-      $scope.newSurvey = resetSurvey; 
+      $scope.newSurvey = defaultSurvey; 
     }
   }
 
   $scope.editSurvey = function(survey){
     $scope.surveys[$scope.editIndex] = $scope.newSurvey;
-    $scope.newSurvey = resetSurvey;
+    $scope.newSurvey = defaultSurvey;
     $scope.editState = false; 
   };
 
@@ -68,6 +68,8 @@ app.controller('homeCtrl', function($scope, $state, $localStorage){
 });
 
 app.controller('addCtrl', function($scope, $state, $localStorage){
+  // $scope.newquestions = []; 
+  $scope.newSurvey = defaultSurvey;
   $scope.currentquestion = ""; 
   $scope.addQuestion = function(){
     $scope.newSurvey.questions.push($scope.currentquestion);
@@ -87,7 +89,7 @@ app.controller('addCtrl', function($scope, $state, $localStorage){
       answers: []
     }
     $localStorage.surveys.push(survey);
-    $scope.newSurvey = resetSurvey;
+    $scope.newSurvey = defaultSurvey;
     $state.go('home');
   }
 });
@@ -112,12 +114,12 @@ app.controller('answerCtrl', function($scope, $state, $localStorage){
 app.controller('mainCtrl', function($scope, $localStorage, $sessionStorage) {
 
   console.log("mainCtrl");
-  var resetSurvey = {
+  var defaultSurvey = {
     title: "title",
     author: "author", 
     date: 0
   };
-  $scope.newSurvey = resetSurvey; 
+  $scope.newSurvey = defaultSurvey; 
 
   $scope.surveys = $scope.$storage.surveys;
 
@@ -130,7 +132,7 @@ app.controller('mainCtrl', function($scope, $localStorage, $sessionStorage) {
       date: $scope.newSurvey.date || 0
     }
     $scope.surveys.push(survey);
-    $scope.newSurvey = resetSurvey;
+    $scope.newSurvey = defaultSurvey;
   }
 
   
@@ -146,13 +148,13 @@ app.controller('mainCtrl', function($scope, $localStorage, $sessionStorage) {
     if ($scope.editState) {
       $scope.newSurvey = $scope.surveys[$scope.editIndex]; 
     } else {
-      $scope.newSurvey = resetSurvey; 
+      $scope.newSurvey = defaultSurvey; 
     }
   }
 
   $scope.editSurvey = function(survey){
     $scope.surveys[$scope.editIndex] = $scope.newSurvey;
-    $scope.newSurvey = resetSurvey;
+    $scope.newSurvey = defaultSurvey;
     $scope.editState = false; 
   };
 
