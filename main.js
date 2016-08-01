@@ -32,6 +32,13 @@ app.controller('homeCtrl', function($scope, $state, $localStorage){
     });
   } 
   $scope.surveys = $scope.$storage.surveys;
+
+  if (!$scope.$storage.answers) {
+    $scope.$storage = $localStorage.$default({
+      answers: []
+    });
+  } 
+
   $scope.editState = false; 
   $scope.removeSurvey = function(survey){
     var index = $scope.surveys.indexOf(survey);
