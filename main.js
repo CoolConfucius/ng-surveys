@@ -181,3 +181,5 @@ app.controller('mainCtrl', function($scope, $localStorage, $sessionStorage) {
     }
   }
 }); 
+
+// Test git clone
